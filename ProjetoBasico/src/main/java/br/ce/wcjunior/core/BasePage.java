@@ -46,6 +46,14 @@ public class BasePage {
 		getDriver().findElement(by).click();
 	}
 	
+	public void clicarBotaoPorNome(String nome) {
+		clicar(By.xpath("//button[.='"+ nome +"']"));
+	}
+	
+	public void clicarLink(String link) {
+		clicar(By.linkText(link));
+	}
+	
 	
     ////-----------------Combo-----------------------
 	public void clicarCombo(String id, String valor) {
@@ -96,7 +104,8 @@ public class BasePage {
 	
     ////-----------------Tabelas -----------------------
 	
-	public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
+	
+    public WebElement obterCelula(String colunaBusca, String valor, String colunaBotao, String idTabela) {
         
 		WebElement tabela = getDriver().findElement(By.xpath("//*[@id='"+ idTabela +"']"));
 		//procurar coluna de registro 
@@ -109,8 +118,14 @@ public class BasePage {
 		int idColunaBotao = obterIndiceColuna(colunaBotao, tabela);
 		
 		//clicar no botao da celula encontrada 
-		WebElement celula = tabela.findElement(By.xpath(".//tr["+idLinha+"]/td["+idColunaBotao+"]"));
+	     WebElement celula = tabela.findElement(By.xpath(".//tr["+idLinha+"]/td["+idColunaBotao+"]"));
+	     
+	     return celula;
+
+	}
+	public void clicarBotaoTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
 		
+		WebElement celula = obterCelula( colunaBusca,  valor, colunaBotao, idTabela);
 		celula.findElement(By.xpath(".//input")).click();
 	}
 
