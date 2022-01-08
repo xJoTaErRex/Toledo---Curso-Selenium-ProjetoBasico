@@ -23,14 +23,6 @@ public class BaseTest {
 	@Rule
 	public TestName testName = new TestName();
 	
-	@Before 
-	public void inicializa() {	
-		page.acessarTelaInicial();
-		page.setEmail("junior.freitas@toledobrasil.com");
-		page.setSenha("1camisa*");		
-		page.entrar();
-	}
-	
 
 	@After
 	public void finaliza() throws IOException {

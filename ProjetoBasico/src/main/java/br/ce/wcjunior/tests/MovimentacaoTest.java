@@ -1,38 +1,44 @@
 package br.ce.wcjunior.tests;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.ce.wcjunior.core.BaseTest;
+import br.ce.wcjunior.core.Propriedades;
 import br.ce.wcjunior.pages.MenuPage;
 import br.ce.wcjunior.pages.MovimentacaoPage;
 import br.ce.wcjunior.utils.DataUtils;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacaoTest extends BaseTest {
 	
 	MenuPage menuPage = new MenuPage();
 	MovimentacaoPage movimentacaoPage = new MovimentacaoPage();
      
 	@Test
-	public void testInserirMoviemntacao() {
+	public void test1_InserirMoviemntacao() {
 		
 		menuPage.acessarTelaCriarMovimentação();
-		movimentacaoPage.setDataMovimentacao("11/04/2019");
-		movimentacaoPage.setDataPagamento("11/04/2019");
+		movimentacaoPage.setDataMovimentacao(DataUtils.obtemDataformatada(new Date()));
+		movimentacaoPage.setDataPagamento(DataUtils.obtemDataformatada(new Date()));
 		movimentacaoPage.setDescricao("Testando");
 		movimentacaoPage.setInteressado("Qualquer");
-		movimentacaoPage.setValor("1000");
-		movimentacaoPage.setConta("Conta de Teste 6");
+		movimentacaoPage.setValor("7000.00");
+		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+		movimentacaoPage.setStatusPago();
 		movimentacaoPage.salvar();
 		Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacaoPage.obtemMensagemSucesso());
 		
 	}
 	
 	@Test
-	public void testValidacoes() {		
+	public void test2_Validacoes() {		
 		menuPage.acessarTelaCriarMovimentação();
 		movimentacaoPage.salvar();
 		List<String> erros = movimentacaoPage.obtemErros();
@@ -46,7 +52,7 @@ public class MovimentacaoTest extends BaseTest {
 	}
 	
 	@Test
-	public void testInserirMoviemntacaoFutura() {
+	public void test3_InserirMoviemntacaoFutura() {
 		
 		menuPage.acessarTelaCriarMovimentação();
 		movimentacaoPage.setDataMovimentacao(DataUtils.obtemDataFormatadaComDiferencaDeDias(3));
@@ -54,7 +60,7 @@ public class MovimentacaoTest extends BaseTest {
 		movimentacaoPage.setDescricao("Testando");
 		movimentacaoPage.setInteressado("Qualquer");
 		movimentacaoPage.setValor("1000");
-		movimentacaoPage.setConta("Conta de Teste 6");
+		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
 		movimentacaoPage.salvar();
 
 		List<String> erros = movimentacaoPage.obtemErros();

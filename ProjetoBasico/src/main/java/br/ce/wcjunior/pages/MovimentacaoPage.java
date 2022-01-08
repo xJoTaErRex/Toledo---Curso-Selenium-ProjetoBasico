@@ -39,6 +39,10 @@ public class MovimentacaoPage extends BasePage {
 		clicarCombo("conta", conta);
 	}
 	
+	public void setStatusPago() {
+		clicar("status_pago");
+	}
+	
 	public String obtemMensagemSucesso() {
 		return obtemTexto(By.xpath("//div[@class ='alert alert-success']"));
 	}
