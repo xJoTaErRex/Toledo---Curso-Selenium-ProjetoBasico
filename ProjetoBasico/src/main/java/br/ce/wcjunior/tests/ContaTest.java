@@ -10,7 +10,6 @@ import br.ce.wcjunior.core.Propriedades;
 import br.ce.wcjunior.pages.ContasPage;
 import br.ce.wcjunior.pages.MenuPage;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContaTest extends BaseTest {
 	
 	MenuPage menuPage = new MenuPage();
@@ -30,7 +29,7 @@ public class ContaTest extends BaseTest {
 	public void test2_EditarConta() {
 		
 		menuPage.acessarTelaListarCadastro();
-		contaPage.clicarAlterarConta("Conta de Teste 6");
+		contaPage.clicarAlterarConta("Conta para alterar");
 		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
 		contaPage.salvar();
 		Assert.assertEquals("Conta alterada com sucesso!", contaPage.obtemMensagemSucesso());
@@ -41,7 +40,7 @@ public class ContaTest extends BaseTest {
 	public void test3_InserirContaRepetida() {
 		
 		menuPage.acessarTelaInserirCadastro();
-		contaPage.setNome(Propriedades.NOME_CONTA_ALTERADA);
+		contaPage.setNome("Conta mesmo nome");
 		contaPage.salvar();
 		Assert.assertEquals("Já existe uma conta com esse nome!", contaPage.obtemMensagemFalha());
 		

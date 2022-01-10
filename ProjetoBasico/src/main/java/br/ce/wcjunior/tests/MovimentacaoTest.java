@@ -15,7 +15,6 @@ import br.ce.wcjunior.pages.MenuPage;
 import br.ce.wcjunior.pages.MovimentacaoPage;
 import br.ce.wcjunior.utils.DataUtils;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacaoTest extends BaseTest {
 	
 	MenuPage menuPage = new MenuPage();
@@ -30,7 +29,7 @@ public class MovimentacaoTest extends BaseTest {
 		movimentacaoPage.setDescricao("Testando");
 		movimentacaoPage.setInteressado("Qualquer");
 		movimentacaoPage.setValor("7000.00");
-		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+		movimentacaoPage.setConta("Conta para movimentacoes");
 		movimentacaoPage.setStatusPago();
 		movimentacaoPage.salvar();
 		Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacaoPage.obtemMensagemSucesso());
@@ -60,7 +59,7 @@ public class MovimentacaoTest extends BaseTest {
 		movimentacaoPage.setDescricao("Testando");
 		movimentacaoPage.setInteressado("Qualquer");
 		movimentacaoPage.setValor("1000");
-		movimentacaoPage.setConta(Propriedades.NOME_CONTA_ALTERADA);
+		movimentacaoPage.setConta("Conta para movimentacoes");
 		movimentacaoPage.salvar();
 
 		List<String> erros = movimentacaoPage.obtemErros();

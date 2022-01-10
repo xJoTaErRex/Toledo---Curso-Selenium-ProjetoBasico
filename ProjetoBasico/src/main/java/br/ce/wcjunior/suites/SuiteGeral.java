@@ -24,20 +24,16 @@ import br.ce.wcjunior.tests.SaldoTest;
 })
 
 public class SuiteGeral {
-    
+	
 	private static LoginPage page = new LoginPage();
 	
 	@BeforeClass
-	public static void inicializa() {	
+	public static void resetarMassaDeDados() {
 		page.acessarTelaInicial();
 		page.setEmail("jr13freitas@hotmail.com");
 		page.setSenha("13233213");		
-		page.entrar();
-	}
-	
-	@AfterClass
-	public static void finaliza() {	
+		page.entrar();		
+		page.resetar();
 		DriverFactory.killDriver();
 	}
-	
 }

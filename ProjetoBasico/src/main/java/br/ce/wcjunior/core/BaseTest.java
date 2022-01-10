@@ -10,6 +10,7 @@ import static br.ce.wcjunior.core.DriverFactory.getDriver;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.OutputType;
@@ -23,6 +24,13 @@ public class BaseTest {
 	@Rule
 	public TestName testName = new TestName();
 	
+	@Before
+	public void inicializa() {	
+		page.acessarTelaInicial();
+		page.setEmail("jr13freitas@hotmail.com");
+		page.setSenha("13233213");		
+		page.entrar();
+	}
 
 	@After
 	public void finaliza() throws IOException {

@@ -17,7 +17,7 @@ public class ExcluirContaComMovimentacaoContaTest extends BaseTest {
 	public void testExcluirContaComMovimentacao() {
 		
 		menuPage.acessarTelaListarCadastro();
-		contaPage.clicarExcluirConta(Propriedades.NOME_CONTA_ALTERADA);
+		contaPage.clicarExcluirConta("Conta com movimentacao");
 		Assert.assertEquals("Conta em uso na movimentações", contaPage.obtemMensagemFalha());	
 	}
 }
